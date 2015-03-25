@@ -25,13 +25,17 @@ class PadWindow(Gtk.Window):
         #submenu for file menu
         self.main_grid.menubar.file_menu.submenu = Gtk.Menu()
 
-        #new file menu item for submenu
+        #new file menu item for file submenu
         self.main_grid.menubar.file_menu.submenu.new_file = Gtk.MenuItem(label="New File")
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.new_file, 0, 1, 0, 1)
 
-        #open file menu item for submenu
+        #open file menu item for file submenu
         self.main_grid.menubar.file_menu.submenu.open_file = Gtk.MenuItem(label="Open...")
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.open_file, 0, 1, 1, 2)
+
+        #save file menu item for file submenu
+        self.main_grid.menubar.file_menu.submenu.save_file = Gtk.MenuItem(label="Save")
+        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_file, 0, 1, 2, 3)
 
         #attachers and settings
         self.main_grid.menubar.file_menu.set_submenu(self.main_grid.menubar.file_menu.submenu)
