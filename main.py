@@ -2,6 +2,7 @@ __author__ = 'dragonloverlord'
 
 from gi.repository import Gtk
 
+
 class PadWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="PyPad")
