@@ -64,6 +64,18 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.edit_menu.submenu.undo_edit = Gtk.MenuItem(label="Undo")
         self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.undo_edit, 0, 1, 0, 1)
 
+        #redo menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.redo_edit = Gtk.MenuItem(label="Redo")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.redo_edit, 0, 1, 1, 2)
+
+        #1st separator for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.separator_one = Gtk.SeparatorMenuItem()
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.separator_one, 0, 1, 2, 3)
+
+        #cut menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.cut_edit = Gtk.MenuItem(label="Cut")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.cut_edit, 0, 1, 3, 4)
+
         #attachers and settings
         self.main_grid.menubar.edit_menu.set_submenu(self.main_grid.menubar.edit_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.edit_menu)
