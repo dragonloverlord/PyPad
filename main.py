@@ -120,7 +120,24 @@ class PadWindow(Gtk.Window):
 
         #help menu item for menubar
         self.main_grid.menubar.help_menu = Gtk.MenuItem(label="Help")
+
+        #submenu for help menu
+        self.main_grid.menubar.help_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
+
+        #about menu item for help submenu
+        self.main_grid.menubar.help_menu.submenu.about_help = Gtk.MenuItem(label="About")
+        self.main_grid.menubar.help_menu.submenu.attach(self.main_grid.menubar.help_menu.submenu.about_help, 0, 1, 0, 1)
+
+        #attachers and settings
+        self.main_grid.menubar.help_menu.set_submenu(self.main_grid.menubar.help_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.help_menu)
+
+        #textarea
+        self.main_grid.textarea = Gtk.TextView()
+        self.main_grid.textarea.set_hexpand(True)
+        self.main_grid.textarea.set_vexpand(True)
+        self.main_grid.textarea.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.main_grid.attach(self.main_grid.textarea, 0, 1, 1, 1)
 
 
 pad = PadWindow()
