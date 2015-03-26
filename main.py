@@ -23,7 +23,7 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.file_menu = Gtk.MenuItem(label="File")
 
         #submenu for file menu
-        self.main_grid.menubar.file_menu.submenu = Gtk.Menu()
+        self.main_grid.menubar.file_menu.submenu = Gtk.Menu(reserve_toggle_size=False)
 
         #new file menu item for file submenu
         self.main_grid.menubar.file_menu.submenu.new_file = Gtk.MenuItem(label="New File")
@@ -41,9 +41,17 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.file_menu.submenu.save_as = Gtk.MenuItem(label="Save As...")
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_as, 0, 1, 3, 4)
 
+        #menu item for separator
+        self.main_grid.menubar.file_menu.submenu.separator_menu_item = Gtk.MenuItem()
+        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.separator_menu_item, 0, 1, 4, 5)
+
         #separator for file submenu
-        self.main_grid.menubar.file_menu.submenu.separator_bar = Gtk.Separator(orientation="horizontal")
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.separator_bar, 0, 1, 4, 5)
+        self.main_grid.menubar.file_menu.submenu.separator_menu_item.separator_bar = Gtk.Separator()
+        self.main_grid.menubar.file_menu.submenu.separator_menu_item.add(self.main_grid.menubar.file_menu.submenu.separator_menu_item.separator_bar)
+
+        #quit menu item for file submenu
+        self.main_grid.menubar.file_menu.submenu.quit_pypad = Gtk.MenuItem(label="Quit")
+        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.quit_pypad, 0, 1, 5, 6)
 
         #attachers and settings
         self.main_grid.menubar.file_menu.set_submenu(self.main_grid.menubar.file_menu.submenu)
