@@ -76,6 +76,18 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.edit_menu.submenu.cut_edit = Gtk.MenuItem(label="Cut")
         self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.cut_edit, 0, 1, 3, 4)
 
+        #copy menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.copy_edit = Gtk.MenuItem(label="Copy")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.copy_edit, 0, 1, 4, 5)
+
+        #paste menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.paste_edit = Gtk.MenuItem(label="Paste")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.paste_edit, 0, 1, 5, 6)
+
+        #delete menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.delete_edit = Gtk.MenuItem(label="Delete")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.delete_edit, 0, 1, 6, 7)
+
         #attachers and settings
         self.main_grid.menubar.edit_menu.set_submenu(self.main_grid.menubar.edit_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.edit_menu)
