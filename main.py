@@ -102,6 +102,16 @@ class PadWindow(Gtk.Window):
 
         #options menu item for menubar
         self.main_grid.menubar.options_menu = Gtk.MenuItem(label="Options")
+
+        #submenu for options menu
+        self.main_grid.menubar.options_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
+
+        #font menu item for options submenu
+        self.main_grid.menubar.options_menu.submenu.font_options = Gtk.MenuItem(label="Font")
+        self.main_grid.menubar.options_menu.submenu.attach(self.main_grid.menubar.options_menu.submenu.font_options, 0, 1, 0, 1)
+
+        #attachers and settings
+        self.main_grid.menubar.options_menu.set_submenu(self.main_grid.menubar.options_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.options_menu)
 
         #help menu item for menubar
