@@ -41,6 +41,10 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.file_menu.submenu.save_as = Gtk.MenuItem(label="Save As...")
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_as, 0, 1, 3, 4)
 
+        #separator for file submenu
+        self.main_grid.menubar.file_menu.submenu.separator_bar = Gtk.Separator(orientation="horizontal")
+        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.separator_bar, 0, 1, 4, 5)
+
         #attachers and settings
         self.main_grid.menubar.file_menu.set_submenu(self.main_grid.menubar.file_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.file_menu)
