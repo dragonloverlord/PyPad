@@ -110,6 +110,10 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.options_menu.submenu.font_options = Gtk.MenuItem(label="Font")
         self.main_grid.menubar.options_menu.submenu.attach(self.main_grid.menubar.options_menu.submenu.font_options, 0, 1, 0, 1)
 
+        #word wrap menu item for options submenu
+        self.main_grid.menubar.options_menu.submenu.word_wrap_options = Gtk.MenuItem(label="Word Wrap")
+        self.main_grid.menubar.options_menu.submenu.attach(self.main_grid.menubar.options_menu.submenu.word_wrap_options, 0, 1, 1, 2)
+
         #attachers and settings
         self.main_grid.menubar.options_menu.set_submenu(self.main_grid.menubar.options_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.options_menu)
