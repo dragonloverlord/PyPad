@@ -47,6 +47,7 @@ class PadWindow(Gtk.Window):
 
         #quit menu item for file submenu
         self.main_grid.menubar.file_menu.submenu.quit_pypad = Gtk.MenuItem(label="Quit")
+        self.main_grid.menubar.file_menu.submenu.quit_pypad.connect("activate", Gtk.main_quit)
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.quit_pypad, 0, 1, 5, 6)
 
         #attachers and settings
