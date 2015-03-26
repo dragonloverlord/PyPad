@@ -41,7 +41,7 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.file_menu.submenu.save_as = Gtk.MenuItem(label="Save As...")
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_as, 0, 1, 3, 4)
 
-        #menu item for separator
+        #menu item separator for file submenu
         self.main_grid.menubar.file_menu.submenu.separator_menu_item = Gtk.SeparatorMenuItem()
         self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.separator_menu_item, 0, 1, 4, 5)
 
@@ -56,6 +56,16 @@ class PadWindow(Gtk.Window):
 
         #edit menu item for menubar
         self.main_grid.menubar.edit_menu = Gtk.MenuItem(label="Edit")
+
+        #submenu for edit menu
+        self.main_grid.menubar.edit_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
+
+        #undo menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.undo_edit = Gtk.MenuItem(label="Undo")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.undo_edit, 0, 1, 0, 1)
+
+        #attachers and settings
+        self.main_grid.menubar.edit_menu.set_submenu(self.main_grid.menubar.edit_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.edit_menu)
 
         #options menu item for menubar
