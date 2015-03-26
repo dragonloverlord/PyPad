@@ -88,6 +88,14 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.edit_menu.submenu.delete_edit = Gtk.MenuItem(label="Delete")
         self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.delete_edit, 0, 1, 6, 7)
 
+        #2nd separator for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.separator_two = Gtk.SeparatorMenuItem()
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.separator_two, 0, 1, 7, 8)
+
+        #select all menu item for edit submenu
+        self.main_grid.menubar.edit_menu.submenu.select_all_edit = Gtk.MenuItem(label="Select All")
+        self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.select_all_edit, 0, 1, 8, 9)
+
         #attachers and settings
         self.main_grid.menubar.edit_menu.set_submenu(self.main_grid.menubar.edit_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.edit_menu)
