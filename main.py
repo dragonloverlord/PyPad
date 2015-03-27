@@ -1,6 +1,7 @@
 __author__ = 'dragonloverlord'
 
 from gi.repository import Gtk
+from gi.repository import GOffice
 
 
 class PadWindow(Gtk.Window):
@@ -132,12 +133,20 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.help_menu.set_submenu(self.main_grid.menubar.help_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.help_menu)
 
+        #scrolled window for textarea
+        self.main_grid.textarea_container = Gtk.ScrolledWindow(None, None)
+
         #textarea
-        self.main_grid.textarea = Gtk.TextView()
-        self.main_grid.textarea.set_hexpand(True)
-        self.main_grid.textarea.set_vexpand(True)
-        self.main_grid.textarea.set_wrap_mode(Gtk.WrapMode.WORD)
-        self.main_grid.attach(self.main_grid.textarea, 0, 1, 1, 1)
+        self.main_grid.textarea_container.textarea = Gtk.TextView()
+        self.main_grid.textarea_container.textarea.set_hexpand(True)
+        self.main_grid.textarea_container.textarea.set_vexpand(True)
+        self.main_grid.textarea_container.textarea.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.main_grid.textarea_container.add_with_viewport(self.main_grid.textarea_container.textarea)
+
+        #settings and attachers
+        self.main_grid.textarea_container.set_hexpand(True)
+        self.main_grid.textarea_container.set_vexpand(True)
+        self.main_grid.attach(self.main_grid.textarea_container, 0, 1, 1, 1)
 
 
 pad = PadWindow()
