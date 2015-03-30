@@ -13,3 +13,8 @@ Packages Needed:
 to start the program run in terminal:
 
     python3 /path/to/main.py
+
+This Program Has Been Tested On:
+================================
+
+Ubuntu 14.10 Lubuntu desktop
