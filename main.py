@@ -1,7 +1,7 @@
 __author__ = 'dragonloverlord'
 
 from gi.repository import Gtk
-from gi.repository import GOffice
+from gi.repository import GtkSource
 
 
 class PadWindow(Gtk.Window):
@@ -9,6 +9,13 @@ class PadWindow(Gtk.Window):
         #window stuff
         Gtk.Window.__init__(self, title="PyPad")
         self.set_size_request(600, 500)
+
+        #undo function
+        def undo(menuitem):
+            self.main_grid.textarea_container.buffer.undo()
+
+        def redo(menuitem):
+            self.main_grid.textarea_container.buffer.redo()
 
         #main grid
         self.main_grid = Gtk.Grid()
@@ -63,10 +70,12 @@ class PadWindow(Gtk.Window):
 
         #undo menu item for edit submenu
         self.main_grid.menubar.edit_menu.submenu.undo_edit = Gtk.MenuItem(label="Undo")
+        self.main_grid.menubar.edit_menu.submenu.undo_edit.connect("activate", undo)
         self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.undo_edit, 0, 1, 0, 1)
 
         #redo menu item for edit submenu
         self.main_grid.menubar.edit_menu.submenu.redo_edit = Gtk.MenuItem(label="Redo")
+        self.main_grid.menubar.edit_menu.submenu.redo_edit.connect("activate", redo)
         self.main_grid.menubar.edit_menu.submenu.attach(self.main_grid.menubar.edit_menu.submenu.redo_edit, 0, 1, 1, 2)
 
         #1st separator for edit submenu
@@ -136,8 +145,11 @@ class PadWindow(Gtk.Window):
         #scrolled window for textarea
         self.main_grid.textarea_container = Gtk.ScrolledWindow(None, None)
 
+        #buffer for textarea
+        self.main_grid.textarea_container.buffer = GtkSource.Buffer()
+
         #textarea
-        self.main_grid.textarea_container.textarea = Gtk.TextView()
+        self.main_grid.textarea_container.textarea = Gtk.TextView.new_with_buffer(self.main_grid.textarea_container.buffer)
         self.main_grid.textarea_container.textarea.set_hexpand(True)
         self.main_grid.textarea_container.textarea.set_vexpand(True)
         self.main_grid.textarea_container.textarea.set_wrap_mode(Gtk.WrapMode.WORD)
