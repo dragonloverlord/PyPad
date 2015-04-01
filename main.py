@@ -2,6 +2,9 @@ __author__ = 'dragonloverlord'
 
 from gi.repository import Gtk
 from gi.repository import GtkSource
+from pylibs.main_grid import main_grid
+from pylibs.menubar import menubar
+from pylibs.submenus.file_menu import file_menu
 
 
 class PadWindow(Gtk.Window):
@@ -9,58 +12,13 @@ class PadWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="PyPad")
         self.set_size_request(600, 500)
 
-        def undo(menuitem):
-            self.main_grid.textarea_container.buffer.undo()
+    def undo(self, menuitem):
+        self.main_grid.textarea_container.buffer.undo()
 
-        def redo(menuitem):
-            self.main_grid.textarea_container.buffer.redo()
+    def redo(self, menuitem):
+        self.main_grid.textarea_container.buffer.redo()
 
-        def save_as(menuitem):
-            def close_dialog(button):
-                self.main_grid.save_as_dialog.close()
-
-            self.main_grid.save_as_dialog = Gtk.FileChooserDialog()
-
-            self.main_grid.save_as_dialog.close_button = self.main_grid.save_as_dialog.add_button("Close", Gtk.ResponseType.CLOSE)
-            self.main_grid.save_as_dialog.close_button.connect("clicked", close_dialog)
-
-            self.main_grid.save_as_dialog.run()
-
-        self.main_grid = Gtk.Grid()
-        self.main_grid.set_hexpand(True)
-        self.add(self.main_grid)
-
-        self.main_grid.menubar = Gtk.MenuBar()
-        self.main_grid.menubar.set_hexpand(True)
-        self.main_grid.attach(self.main_grid.menubar, 0, 0, 1, 1)
-
-        self.main_grid.menubar.file_menu = Gtk.MenuItem(label="File")
-
-        self.main_grid.menubar.file_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
-
-        self.main_grid.menubar.file_menu.submenu.new_file = Gtk.MenuItem(label="New File")
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.new_file, 0, 1, 0, 1)
-
-        self.main_grid.menubar.file_menu.submenu.open_file = Gtk.MenuItem(label="Open...")
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.open_file, 0, 1, 1, 2)
-
-        self.main_grid.menubar.file_menu.submenu.save_file = Gtk.MenuItem(label="Save")
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_file, 0, 1, 2, 3)
-
-        self.main_grid.menubar.file_menu.submenu.save_as = Gtk.MenuItem(label="Save As...")
-        self.main_grid.menubar.file_menu.submenu.save_as.connect("activate", save_as)
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.save_as, 0, 1, 3, 4)
-
-        self.main_grid.menubar.file_menu.submenu.separator_menu_item = Gtk.SeparatorMenuItem()
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.separator_menu_item, 0, 1, 4, 5)
-
-        self.main_grid.menubar.file_menu.submenu.quit_pypad = Gtk.MenuItem(label="Quit")
-        self.main_grid.menubar.file_menu.submenu.quit_pypad.connect("activate", Gtk.main_quit)
-        self.main_grid.menubar.file_menu.submenu.attach(self.main_grid.menubar.file_menu.submenu.quit_pypad, 0, 1, 5, 6)
-
-        self.main_grid.menubar.file_menu.set_submenu(self.main_grid.menubar.file_menu.submenu)
-        self.main_grid.menubar.append(self.main_grid.menubar.file_menu)
-
+    def edit_menu(self):
         self.main_grid.menubar.edit_menu = Gtk.MenuItem(label="Edit")
 
         self.main_grid.menubar.edit_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
@@ -97,6 +55,7 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.edit_menu.set_submenu(self.main_grid.menubar.edit_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.edit_menu)
 
+    def options_menu(self):
         self.main_grid.menubar.options_menu = Gtk.MenuItem(label="Options")
 
         self.main_grid.menubar.options_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
@@ -110,6 +69,7 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.options_menu.set_submenu(self.main_grid.menubar.options_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.options_menu)
 
+    def help_menu(self):
         self.main_grid.menubar.help_menu = Gtk.MenuItem(label="Help")
 
         self.main_grid.menubar.help_menu.submenu = Gtk.Menu(reserve_toggle_size=True)
@@ -120,6 +80,7 @@ class PadWindow(Gtk.Window):
         self.main_grid.menubar.help_menu.set_submenu(self.main_grid.menubar.help_menu.submenu)
         self.main_grid.menubar.append(self.main_grid.menubar.help_menu)
 
+    def textarea_container(self):
         self.main_grid.textarea_container = Gtk.ScrolledWindow(None, None)
 
         self.main_grid.textarea_container.buffer = GtkSource.Buffer()
@@ -137,5 +98,10 @@ class PadWindow(Gtk.Window):
 
 pad = PadWindow()
 pad.connect("delete-event", Gtk.main_quit)
+
+main_grid(pad)
+menubar(pad)
+file_menu(pad)
+
 pad.show_all()
 Gtk.main()
