@@ -1,10 +1,10 @@
 __author__ = 'dragonloverlord'
 
 from gi.repository import Gtk
-from pylibs.submenus.utils.save_as import save_as
-from pylibs.submenus.utils.save_as import set_pad_save_as
-from pylibs.submenus.utils.open_file import open_file
-from pylibs.submenus.utils.open_file import set_pad_open_file
+from .utils.save_as import save_as
+from .utils.save_as import set_pad_save_as
+from .utils.open_file import open_file
+from .utils.open_file import set_pad_open_file
 
 
 def file_menu(pad):
@@ -30,7 +30,8 @@ def file_menu(pad):
     pad.main_grid.menubar.file_menu.submenu.attach(pad.main_grid.menubar.file_menu.submenu.save_as, 0, 1, 3, 4)
 
     pad.main_grid.menubar.file_menu.submenu.separator_menu_item = Gtk.SeparatorMenuItem()
-    pad.main_grid.menubar.file_menu.submenu.attach(pad.main_grid.menubar.file_menu.submenu.separator_menu_item, 0, 1, 4, 5)
+    pad.main_grid.menubar.file_menu.submenu.attach(pad.main_grid.menubar.file_menu.submenu.separator_menu_item, 0, 1, 4,
+                                                   5)
 
     pad.main_grid.menubar.file_menu.submenu.quit_pypad = Gtk.MenuItem(label="Quit")
     pad.main_grid.menubar.file_menu.submenu.quit_pypad.connect("activate", Gtk.main_quit)

@@ -5,10 +5,12 @@ from gi.repository import Gtk
 
 global pad
 
+
 def set_pad_open_file(pad_two):
     global pad
 
     pad = pad_two
+
 
 def open_file(menuitem):
     def close_dialog(button):
