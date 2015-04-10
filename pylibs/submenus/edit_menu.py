@@ -5,11 +5,14 @@ from .utils.undo import undo
 from .utils.undo import set_pad_undo
 from .utils.redo import redo
 from .utils.redo import set_pad_redo
+from .utils.paste import paste
+from .utils.paste import set_pad_paste
 
 
 def edit_menu(pad):
     set_pad_undo(pad)
     set_pad_redo(pad)
+    set_pad_paste(pad)
 
     pad.main_grid.menubar.edit_menu = Gtk.MenuItem(label="Edit")
 
@@ -33,6 +36,7 @@ def edit_menu(pad):
     pad.main_grid.menubar.edit_menu.submenu.attach(pad.main_grid.menubar.edit_menu.submenu.copy_edit, 0, 1, 4, 5)
 
     pad.main_grid.menubar.edit_menu.submenu.paste_edit = Gtk.MenuItem(label="Paste")
+    pad.main_grid.menubar.edit_menu.submenu.paste_edit.connect("activate", paste)
     pad.main_grid.menubar.edit_menu.submenu.attach(pad.main_grid.menubar.edit_menu.submenu.paste_edit, 0, 1, 5, 6)
 
     pad.main_grid.menubar.edit_menu.submenu.delete_edit = Gtk.MenuItem(label="Delete")
