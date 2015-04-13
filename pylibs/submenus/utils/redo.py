@@ -13,4 +13,6 @@ def set_pad_redo(pad_two):
 
 
 def redo(menuitem):
+    global pad
+
     pad.main_grid.textarea_container.buffer.redo()

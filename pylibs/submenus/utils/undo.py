@@ -13,4 +13,6 @@ def set_pad_undo(pad_two):
 
 
 def undo(menuitem):
+    global pad
+
     pad.main_grid.textarea_container.buffer.undo()
