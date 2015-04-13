@@ -11,6 +11,8 @@ from .utils.copy import copy
 from .utils.copy import set_pad_copy
 from .utils.cut import cut
 from .utils.cut import set_pad_cut
+from .utils.delete import delete_selection
+from .utils.delete import set_pad_delete
 
 
 def edit_menu(pad):
@@ -19,6 +21,7 @@ def edit_menu(pad):
     set_pad_paste(pad)
     set_pad_copy(pad)
     set_pad_cut(pad)
+    set_pad_delete(pad)
 
     pad.main_grid.menubar.edit_menu = Gtk.MenuItem(label="Edit")
 
@@ -48,6 +51,7 @@ def edit_menu(pad):
     pad.main_grid.menubar.edit_menu.submenu.attach(pad.main_grid.menubar.edit_menu.submenu.paste_edit, 0, 1, 5, 6)
 
     pad.main_grid.menubar.edit_menu.submenu.delete_edit = Gtk.MenuItem(label="Delete")
+    pad.main_grid.menubar.edit_menu.submenu.delete_edit.connect("activate", delete_selection)
     pad.main_grid.menubar.edit_menu.submenu.attach(pad.main_grid.menubar.edit_menu.submenu.delete_edit, 0, 1, 6, 7)
 
     pad.main_grid.menubar.edit_menu.submenu.separator_two = Gtk.SeparatorMenuItem()
